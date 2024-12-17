@@ -268,7 +268,7 @@ void createac(MYSQL* conn) {
             }
 
             if (strlen(un) > 4 && strlen(un) < 50) {
-                sprintf(query, "INSERT INTO users (user, pass, name, admin) VALUES('%s', '%s', '%s', 0)", un, p, name);
+                sprintf(query, "INSERT INTO users (user, pass, name) VALUES('%s', '%s', '%s')", un, p, name);
                 if (mysql_query(conn, query)) {
                     printf("Error inserting data: %s\n", mysql_error(conn));
                 }
@@ -452,7 +452,7 @@ void start(MYSQL* conn) {
         printf("2: Login\n");
         printf("3: Quit\n");
         printf("Enter Mode: ");
-        getchar();
+
         scanf("%d", &m);
         if (m == 1) {
            createac(conn);
@@ -484,8 +484,7 @@ int main() {
         mysql_close(conn);
         return 1;
     }
-    
-   /* Book(conn, "Top Gun Maverick", "Slot1"); */
+
     start(conn);
     printf("Thank You");
     mysql_close(conn);
